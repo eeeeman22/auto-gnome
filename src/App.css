@@ -1,38 +1,68 @@
+html,
+body {
+  height: 80%;
+  width: 100%;
+}
+#root {
+  height: 80%;
+  width: 100%;
+}
 .App {
   text-align: center;
+  margin: 0 100px 100px 100px;
+  height: 100%;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* --------------
+NAV
+------------------ */
+nav {
+  text-align: left;
+  height: 100px;
+  width: 100%;
+  border: 1px solid red;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+nav,
+ul {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+}
+div.navElement {
+  margin-left: 20px;
+  margin-right: 20px;
+  border: 1px solid blue;
 }
 
-.App-link {
-  color: #61dafb;
+/* --------------
+MAIN
+------------------ */
+div.main {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  width: 100%;
+  height: 100%;
+  border: 2px solid black;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+div.practiceStackContainer {
+  /* height: fit-content; */
+  height: 100%;
+  width: 40%;
+  /* border: 1px solid red; */
+}
+div.practiceStackElement {
+  width: 100%;
+  height: 40px;
+}
+div.moduleContainer {
+  width: 60%;
+  height: 100%;
+}
+div.module {
+  width: 100%;
+  height: 50%;
+  /* padding: 25%; */
+  border: 2px solid blue;
 }
