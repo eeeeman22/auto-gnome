@@ -45,6 +45,7 @@ div.main {
   width: 100%;
   height: 100%;
   border: 2px solid black;
+  min-height: 600px;
 }
 div.practiceStackContainer {
   /* height: fit-content; */
@@ -57,12 +58,88 @@ div.practiceStackElement {
   height: 40px;
 }
 div.moduleContainer {
+  min-width: 900px;
   width: 60%;
   height: 100%;
 }
 div.module {
+  position: relative;
   width: 100%;
   height: 50%;
   /* padding: 25%; */
   border: 2px solid blue;
+  min-height: 300px;
+}
+div.module div.background {
+  background: linear-gradient(27deg, #151515 5px, transparent 5px) 0 5px,
+    linear-gradient(207deg, #151515 5px, transparent 5px) 10px 0px,
+    linear-gradient(27deg, #222 5px, transparent 5px) 0px 10px,
+    linear-gradient(207deg, #222 5px, transparent 5px) 10px 5px,
+    linear-gradient(90deg, #1b1b1b 10px, transparent 10px),
+    linear-gradient(
+      #1d1d1d 25%,
+      #1a1a1a 25%,
+      #1a1a1a 50%,
+      transparent 50%,
+      transparent 75%,
+      #242424 75%,
+      #242424
+    );
+  background-color: #131313;
+  background-size: 20px 20px;
+  width: 100%;
+  height: 100%;
+}
+div.background h2 {
+  color: white;
+  /* font-size: x-large; */
+  margin: 0px;
+}
+ul.moduleContents {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  font-size: x-large;
+  color: white;
+  padding: 20px;
+  margin: 40px;
+}
+
+ul.moduleContents input {
+  font-size: medium;
+  width: 30px;
+  padding: 3%;
+  margin: 10px;
+}
+ul.moduleContents button {
+  padding: 3%;
+}
+button.playMetronome {
+  position: absolute;
+  background-color: green;
+  width: 10%;
+  height: 10%;
+  right: 0;
+  bottom: 13%;
+}
+button.stopMetronome {
+  position: absolute;
+  background-color: red;
+  width: 10%;
+  height: 10%;
+  right: 0;
+  bottom: 0;
+}
+button.moduleButton {
+  font-size: medium;
+  padding: 10px;
+  margin: 4px;
+  width: 80px;
+  height: 40px;
+  background: white;
+  border-radius: 1em;
+}
+div.moduleElement input.pitchSlider {
+  width: 100px;
 }
