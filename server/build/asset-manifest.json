@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/static/css/main.f33552f3.chunk.css",
+    "main.js": "/static/js/main.adab5e4a.chunk.js",
+    "main.js.map": "/static/js/main.adab5e4a.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.c7c6c9c6.js",
+    "runtime-main.js.map": "/static/js/runtime-main.c7c6c9c6.js.map",
+    "static/js/2.04a48357.chunk.js": "/static/js/2.04a48357.chunk.js",
+    "static/js/2.04a48357.chunk.js.map": "/static/js/2.04a48357.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.feb6161d8fab4aa6552b6f276eace8d4.js": "/precache-manifest.feb6161d8fab4aa6552b6f276eace8d4.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.f33552f3.chunk.css.map": "/static/css/main.f33552f3.chunk.css.map",
+    "static/js/2.04a48357.chunk.js.LICENSE": "/static/js/2.04a48357.chunk.js.LICENSE",
+    "static/media/metronome1.flac": "/static/media/metronome1.fd742d0f.flac"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.c7c6c9c6.js",
+    "static/js/2.04a48357.chunk.js",
+    "static/css/main.f33552f3.chunk.css",
+    "static/js/main.adab5e4a.chunk.js"
+  ]
+}

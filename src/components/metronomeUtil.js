@@ -9,7 +9,7 @@ const finishedLoading = bufferList => {
   buffer = bufferList[0];
 };
 
-const Sound = async (numOfReps = 1) => {
+const Sound = async () => {
   if (buffer === undefined) {
     let bufferLoader = new BufferLoader(
       context,
@@ -34,18 +34,14 @@ const play = (tempo, goal, incrementBy, incrementEvery) => {
   let currentTime = timeContext.currentTime + 0.2;
   let incrementCompletion = 0;
   setIntervalCancel = setInterval(() => {
-    console.log('QUEUE LEN', queue.length);
     // clear out old gnomes from queue to save memory
     for (let i = 0; i < ended; i++) {
       queue.shift();
     }
     ended = 0;
-    // console.log('QUEUE LEN:', queue.length);
 
     if (queue.length < 21) {
       for (let i = 1; i < 21; i++) {
-        // console.log('RAWTEMPO', rawTempo);
-        // console.log('calculated tempo:', calculatedTempo);
         // update tempo if incrementing
         if (incrementBy && incrementEvery && rawTempo < goal) {
           if (incrementCompletion > incrementEvery) {
@@ -55,34 +51,25 @@ const play = (tempo, goal, incrementBy, incrementEvery) => {
               rawTempo = goal;
             }
             calculatedTempo = 60 / rawTempo;
-            console.log('INCREMENTING. NEW TEMPO:', calculatedTempo);
           }
         }
+
         // generate audio and push to queue
-        // let context = new AudioContext();
         let source = timeContext.createBufferSource();
         source.buffer = buffer;
         source.connect(timeContext.destination);
         source.onended = () => {
-          console.log('playing');
+          // console.log('playing');
           ended += 1;
         };
 
+        // gotta push the clock ahead so that it doesn't just duplicate events
         incrementCompletion += calculatedTempo;
-        console.log('written up to', currentTime + calculatedTempo);
+        // console.log('written up to', currentTime + calculatedTempo);
         source.start(currentTime + calculatedTempo);
         queue.push(source);
         currentTime += calculatedTempo;
-        // lengthOfBeats.push(calculatedTempo);
       }
-      // gotta push the clock ahead so that it doesn't just duplicate events
-      // let extraTime = lengthOfBeats.reduce((acc, curr) => {
-      //   return acc + curr;
-      // });
-      // console.log('Extra time', extraTime);
-      // currentTime += extraTime;
-
-      // console.log('IN QUEUE', queue.length);
     }
   }, 200);
 };
@@ -92,7 +79,6 @@ const cancel = () => {
   for (let node in queue) {
     queue[node].stop();
   }
-  // console.log(queue);
 };
 
 export { Sound, play, cancel };
