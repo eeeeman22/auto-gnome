@@ -9,7 +9,7 @@ const finishedLoading = bufferList => {
   buffer = bufferList[0];
 };
 
-const Sound = async () => {
+(async () => {
   if (buffer === undefined) {
     let bufferLoader = new BufferLoader(
       context,
@@ -18,18 +18,16 @@ const Sound = async () => {
     );
     bufferLoader.load();
   }
-};
+})();
 
 let ended = 0;
 let queue = [];
 let setIntervalCancel;
-let lengthOfBeats = [];
 
 const play = (tempo, goal, incrementBy, incrementEvery) => {
   let timeContext = new AudioContext();
   let rawTempo = tempo;
   let calculatedTempo = 60 / rawTempo;
-  // default to 20minutes
 
   let currentTime = timeContext.currentTime + 0.2;
   let incrementCompletion = 0;
@@ -58,17 +56,19 @@ const play = (tempo, goal, incrementBy, incrementEvery) => {
         let source = timeContext.createBufferSource();
         source.buffer = buffer;
         source.connect(timeContext.destination);
+
+        // callback adds one more click to the list of elements to delete
+        // eslint-disable-next-line
         source.onended = () => {
-          // console.log('playing');
           ended += 1;
         };
 
         // gotta push the clock ahead so that it doesn't just duplicate events
         incrementCompletion += calculatedTempo;
-        // console.log('written up to', currentTime + calculatedTempo);
+        currentTime += calculatedTempo;
+        // initiate sound and push to a place we can reference it
         source.start(currentTime + calculatedTempo);
         queue.push(source);
-        currentTime += calculatedTempo;
       }
     }
   }, 200);
@@ -81,4 +81,4 @@ const cancel = () => {
   }
 };
 
-export { Sound, play, cancel };
+export { play, cancel };

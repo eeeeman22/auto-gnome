@@ -1,23 +1,19 @@
-import React, { useState } from 'react';
-import { Sound, play, cancel } from './metronomeUtil.js';
+import React from 'react';
+import { play, cancel } from './metronomeUtil.js';
 const AudioContext = window.AudioContext || window.webkitAudioContext;
 const timeContext = new AudioContext();
-Sound();
-let gnomes = [];
 
 const runGnomes = practiceStack => {
-  console.log(practiceStack[0]);
+  // check if array has multiple entries
   if (Array.isArray(practiceStack) && practiceStack.length > 0) {
-    console.log(practiceStack);
     const { tempo, goal, incrementBy, incrementEvery } = practiceStack[0];
+
     let currentTime = timeContext.currentTime + 0.2;
     let source = timeContext.createOscillator();
     let gain = timeContext.createGain();
     gain.gain.value = 0;
     source.connect(gain);
     gain.connect(timeContext.destination);
-    gain.gain.value = 0.01;
-    console.log(source);
 
     source.onended = () => {
       play(tempo, goal, incrementBy, incrementEvery);
@@ -28,6 +24,7 @@ const runGnomes = practiceStack => {
     source.stop(currentTime + 0.1);
   }
 };
+
 const cancelGnomeAndAdvance = (practiceStack, delay) => {
   if (practiceStack.length >= 1) {
     let currentTime = timeContext.currentTime + 0.2;
@@ -36,13 +33,15 @@ const cancelGnomeAndAdvance = (practiceStack, delay) => {
     gain.gain.value = 0;
     source.connect(gain);
     gain.connect(timeContext.destination);
-    console.log('ON END ');
+
     source.onended = () => {
-      console.log('here');
       cancel();
-      runGnomes(practiceStack.slice(1));
+      if (practiceStack.length > 1) {
+        runGnomes(practiceStack.slice(1));
+      }
     };
-    source.start();
+
+    source.start(currentTime);
     source.stop(delay);
   }
 };

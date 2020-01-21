@@ -1,11 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import './ToneGenerator.css';
+import React, { useState } from 'react';
 import { makeSound, stopSound } from './Drone.js';
 
 const ToneGenerator = () => {
   const [pitch, setPitch] = useState(1);
   let [isPlaying, setIsPlaying] = useState(false);
-  // useEffect(() => {}, [pitch]);
 
   const changePitch = pitch => {
     setPitch(pitch);

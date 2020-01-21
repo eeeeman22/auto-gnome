@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 const PracticeStack = ({ practiceStack }) => {
-  console.log(Array.isArray(practiceStack));
   return (
     <>
       {practiceStack.length > 0 ? (

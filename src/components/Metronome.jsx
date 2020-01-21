@@ -1,13 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import metronomeClick from '../sounds/metronome1.flac';
-import { Sound, play, cancel } from './metronomeUtil.js';
+import React from 'react';
+import { play, cancel } from './metronomeUtil.js';
 
 class Metronome extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       tempo: this.props.tempo || 60,
-      autoPlay: this.props.autoPlay || false,
       goal: this.props.goal || 60,
       incrementBy: this.props.incrementBy || 0,
       incrementEvery: this.props.incrementEvery || 0,
@@ -76,14 +74,6 @@ class Metronome extends React.Component {
     this.start();
   }
 
-  async componentDidMount() {
-    Sound();
-    if (this.state.autoPlay) {
-      this.start();
-    }
-    console.log(this.props.passedProp);
-  }
-
   render() {
     if (!this.state.hidden) {
       return (
@@ -143,7 +133,7 @@ class Metronome extends React.Component {
               </div>
             </ul>
             <ul>
-              <div className="moduleElement">
+              {/* <div className="moduleElement">
                 <button
                   className="moduleButton"
                   onClick={() =>
@@ -158,7 +148,7 @@ class Metronome extends React.Component {
                 >
                   Save
                 </button>
-              </div>
+              </div> */}
               <div className="moduleElement">
                 <button
                   className="moduleButton"

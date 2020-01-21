@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import './App.css';
 import Metronome from './components/Metronome.jsx';
 import ToneGenerator from './components/ToneGenerator.jsx';
@@ -11,49 +11,39 @@ class App extends React.Component {
     this.state = {
       practiceStack: []
     };
-    this.addToPracticeStack = this.addToPracticeStack.bind(this);
+    // this.addToPracticeStack = this.addToPracticeStack.bind(this);
   }
 
-  addToPracticeStack(tempo, goal, incrementBy, incrementEvery, howLong) {
-    this.state.practiceStack.push({
-      tempo,
-      goal,
-      incrementBy,
-      incrementEvery,
-      howLong
-    });
-    this.setState({ practiceStack: this.state.practiceStack });
-  }
+  // addToPracticeStack(tempo, goal, incrementBy, incrementEvery, howLong) {
+  //   this.state.practiceStack.push({
+  //     tempo,
+  //     goal,
+  //     incrementBy,
+  //     incrementEvery,
+  //     howLong
+  //   });
+  //   this.setState({ practiceStack: this.state.practiceStack });
+  // }
 
   render() {
     return (
       <div className="App">
-        <h1 className="header">Practical.ly</h1>
-        {/* <nav>
-          <ul>
-            <div className="navElement">Home</div>
-            <div className="navElement">My Schedule</div>
-            <div className="navElement">Other</div>
-          </ul>
-        </nav> */}
+        <h1 className="header">Auto Gnome</h1>
         <div className="main">
-          <PracticeStack
+          {/* <PracticeStack
             className="practiceStackContainer"
             practiceStack={this.state.practiceStack}
-          />
-
+          /> */}
           <div className="moduleContainer">
             <Metronome
               addToPracticeStack={this.addToPracticeStack}
               tempo={80}
-              // autoPlay={true}
               goal={100}
               incrementBy={5}
               incrementEvery={10}
             />
-
             <ToneGenerator />
-            <AutoGnome practiceStack={this.state.practiceStack} />
+            {/* <AutoGnome practiceStack={this.state.practiceStack} /> */}
           </div>
         </div>
       </div>

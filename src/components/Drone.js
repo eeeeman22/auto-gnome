@@ -22,21 +22,16 @@ const makeSound = pitch => {
   if (!sounds[0]) {
     let oscillator = context.createOscillator();
     let gain = context.createGain();
-
     sounds.push(oscillator);
     sounds.push(gain);
 
     oscillator.type = 'sine';
-
     oscillator.frequency.value = freq;
 
     oscillator.connect(gain);
     gain.connect(context.destination);
 
-    // gain.start();
     oscillator.start();
-
-    console.log(oscillator);
     return pitch;
   }
 };
@@ -49,7 +44,5 @@ const stopSound = () => {
     }
   }
   sounds = [];
-
-  console.log('stopSound');
 };
 export { makeSound, stopSound };
