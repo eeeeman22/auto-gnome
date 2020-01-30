@@ -42,8 +42,8 @@ const ToneGenerator = () => {
   return (
     <div className="module">
       <div className="background">
-        <h1>Drone Generator</h1>
-        <h2>Pitch: {pitchName(pitch)}</h2>
+        <h1 className="moduleHeader">Drone Generator</h1>
+        <h2 className="pitchName">Pitch: {pitchName(pitch)}</h2>
         <ul className="moduleContents">
           <div className="moduleElement">
             <input

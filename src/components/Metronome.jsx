@@ -9,8 +9,7 @@ class Metronome extends React.Component {
       goal: this.props.goal || 60,
       incrementBy: this.props.incrementBy || 0,
       incrementEvery: this.props.incrementEvery || 0,
-      hidden: this.props.hidden || false,
-      howLong: this.props.howLong || 10
+      isTesting: false
     };
   }
 
@@ -18,7 +17,7 @@ class Metronome extends React.Component {
     if (tempo === '') {
       this.setState({ tempo: 0 });
     }
-    if (Number(tempo)) {
+    if (Number(tempo) && tempo > 9) {
       this.setState({ tempo: tempo });
     }
   }
@@ -30,6 +29,7 @@ class Metronome extends React.Component {
     }
   }
   changeIncrementBy(newIncrement) {
+    cancel();
     if (newIncrement === '') {
       this.setState({ incrementBy: 0 });
     } else {
@@ -37,17 +37,11 @@ class Metronome extends React.Component {
     }
   }
   changeIncrementEvery(newIncrementEvery) {
+    cancel();
     if (newIncrementEvery === '') {
       this.setState({ incrementEvery: 0 });
     } else {
       this.setState({ incrementEvery: newIncrementEvery });
-    }
-  }
-  changeHowLong(howLong) {
-    if (howLong === '') {
-      this.setState({ howLong: 0 });
-    } else {
-      this.setState({ howLong: howLong });
     }
   }
 
@@ -65,13 +59,17 @@ class Metronome extends React.Component {
   }
   incrementBy10() {
     this.stopMetronome();
-    this.setState({ tempo: this.state.tempo + 10 });
-    this.start();
+    if (Number(this.state.tempo) && this.state.tempo > 10) {
+      this.setState({ tempo: this.state.tempo + 10 });
+      this.start();
+    }
   }
   decrementBy10() {
     this.stopMetronome();
-    this.setState({ tempo: this.state.tempo - 10 });
-    this.start();
+    if (Number(this.state.tempo) && this.state.tempo > 10) {
+      this.setState({ tempo: this.state.tempo - 10 });
+      this.start();
+    }
   }
 
   render() {
@@ -79,10 +77,10 @@ class Metronome extends React.Component {
       return (
         <div className="module">
           <div className="background">
-            <h2>Metronome</h2>
+            <h1 className="moduleHeader">Metronome</h1>
             <ul className="moduleContents">
               <div className="moduleElement">
-                Starting Tempo:
+                Starting Tempo
                 <input
                   type="text"
                   value={this.state.tempo}
@@ -92,7 +90,7 @@ class Metronome extends React.Component {
                 ></input>
               </div>
               <div className="moduleElement">
-                Goal Tempo:
+                Goal Tempo
                 <input
                   type="text"
                   value={this.state.goal}
@@ -121,34 +119,8 @@ class Metronome extends React.Component {
                   }}
                 ></input>
               </div>
-              <div className="moduleElement">
-                HowLong?
-                <input
-                  type="text"
-                  value={this.state.howLong}
-                  onChange={e => {
-                    this.changeHowLong(e.target.value);
-                  }}
-                ></input>
-              </div>
             </ul>
             <ul>
-              {/* <div className="moduleElement">
-                <button
-                  className="moduleButton"
-                  onClick={() =>
-                    this.props.addToPracticeStack(
-                      this.state.tempo,
-                      this.state.goal,
-                      this.state.incrementBy,
-                      this.state.incrementEvery,
-                      this.state.howLong
-                    )
-                  }
-                >
-                  Save
-                </button>
-              </div> */}
               <div className="moduleElement">
                 <button
                   className="moduleButton"
@@ -165,11 +137,8 @@ class Metronome extends React.Component {
                   -10bpm
                 </button>
               </div>
-              <button
-                className="playMetronome"
-                onClick={() => this.start(this.state.tempo)}
-              >
-                Play
+              <button className="playMetronome" onClick={() => this.start()}>
+                Start
               </button>
               <button
                 className="stopMetronome"

@@ -42,6 +42,7 @@ class App extends React.Component {
               incrementBy={5}
               incrementEvery={10}
             />
+            <div className="break"></div>
             <ToneGenerator />
             {/* <AutoGnome practiceStack={this.state.practiceStack} /> */}
           </div>

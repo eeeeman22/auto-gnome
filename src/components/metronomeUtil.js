@@ -2,33 +2,34 @@ import metronomeClick from '../sounds/metronome1.flac';
 import BufferLoader from './BufferLoader.js';
 window.AudioContext = window.AudioContext || window.webkitAudioContext;
 
-const context = new AudioContext();
+let timeContext = new AudioContext();
 let buffer;
 
 const finishedLoading = bufferList => {
   buffer = bufferList[0];
 };
 
-(async () => {
+const sound = async () => {
   if (buffer === undefined) {
     let bufferLoader = new BufferLoader(
-      context,
+      timeContext,
       [metronomeClick],
       finishedLoading
     );
     bufferLoader.load();
   }
-})();
+};
 
 let ended = 0;
 let queue = [];
 let setIntervalCancel;
 
-const play = (tempo, goal, incrementBy, incrementEvery) => {
-  let timeContext = new AudioContext();
+const play = (tempo, goal, incrementBy, incrementEvery, notTesting = false) => {
+  timeContext = new AudioContext();
+  sound();
   let rawTempo = tempo;
   let calculatedTempo = 60 / rawTempo;
-
+  console.log(timeContext);
   let currentTime = timeContext.currentTime + 0.2;
   let incrementCompletion = 0;
   setIntervalCancel = setInterval(() => {
@@ -39,6 +40,7 @@ const play = (tempo, goal, incrementBy, incrementEvery) => {
     ended = 0;
 
     if (queue.length < 21) {
+      // console.log(queue);
       for (let i = 1; i < 21; i++) {
         // update tempo if incrementing
         if (incrementBy && incrementEvery && rawTempo < goal) {
@@ -75,9 +77,12 @@ const play = (tempo, goal, incrementBy, incrementEvery) => {
 };
 
 const cancel = () => {
-  clearInterval(setIntervalCancel);
-  for (let node in queue) {
-    queue[node].stop();
+  if (setIntervalCancel) {
+    clearInterval(setIntervalCancel);
+    for (let node in queue) {
+      queue[node].stop();
+    }
+    queue = [];
   }
 };
 

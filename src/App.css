@@ -2,7 +2,7 @@ html,
 body {
   height: 80%;
   width: 100%;
-  background-color: grey;
+  background-color: rgb(92, 92, 92);
 }
 #root {
   height: 80%;
@@ -64,7 +64,7 @@ div.practiceStackElement {
 div.moduleContainer {
   min-width: 600px;
   width: 100%;
-  height: 100%;
+  height: 800px;
 }
 div.module {
   position: relative;
@@ -73,24 +73,9 @@ div.module {
   min-height: 300px;
 }
 div.module div.background {
-  background: linear-gradient(27deg, #151515 5px, transparent 5px) 0 5px,
-    linear-gradient(207deg, #151515 5px, transparent 5px) 10px 0px,
-    linear-gradient(27deg, #222 5px, transparent 5px) 0px 10px,
-    linear-gradient(207deg, #222 5px, transparent 5px) 10px 5px,
-    linear-gradient(90deg, #1b1b1b 10px, transparent 10px),
-    linear-gradient(
-      #1d1d1d 25%,
-      #1a1a1a 25%,
-      #1a1a1a 50%,
-      transparent 50%,
-      transparent 75%,
-      #242424 75%,
-      #242424
-    );
-  background-color: #131313;
-  background-size: 20px 20px;
-  width: 100%;
   height: 100%;
+  width: 100%;
+  background-color: grey;
 }
 div.background h2 {
   color: white;
@@ -104,7 +89,9 @@ ul.moduleContents {
   font-size: x-large;
   color: seashell;
   padding: 20px;
-  margin: 40px;
+}
+h1.moduleHeader {
+  padding: 30px;
 }
 
 ul.moduleContents input {
@@ -117,40 +104,54 @@ ul.moduleContents button {
   padding: 3%;
 }
 button.playMetronome {
+  color: white;
   font-size: 18px;
   position: absolute;
-  background-color: green;
+  background-color: #319f36;
   width: 10%;
   height: 10%;
-  right: 0;
-  bottom: 13%;
+  right: 10px;
+  bottom: 15%;
+}
+button.playMetronome:active {
 }
 button.stopMetronome {
+  color: white;
   font-size: 18px;
   position: absolute;
   background-color: red;
   width: 10%;
   height: 10%;
-  right: 0;
-  bottom: 0;
+  right: 10px;
+  bottom: 10px;
+  padding: 10px;
 }
 button.moduleButton {
   font-size: medium;
-  padding: 10px;
   margin: 4px;
   width: 80px;
   height: 40px;
-  background: white;
+  background: rgb(202, 202, 202);
   border-radius: 1em;
 }
 div.moduleElement input.pitchSlider {
   width: 100px;
+  border: 3px solid black;
 }
+div.moduleElement input {
+  background-color: rgb(202, 202, 202);
+  border: 0px solid transparent;
+}
+
 div.background h1 {
   margin: 0;
   color: seashell;
 }
-div button.runGnomes {
-  width: 100px;
-  height: 50px;
+div.break {
+  height: 40px;
+  width: 100%;
+  background-color: rgb(92, 92, 92);
+}
+h2.pitchName {
+  padding-top: 40px;
 }
