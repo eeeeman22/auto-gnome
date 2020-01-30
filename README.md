@@ -13,4 +13,7 @@ Auto Gnome is an auto incrementing metronome and drone generator.
 
 Run `npm start` to run the app.
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-Alternatively, go [here](auto-gnome.herokuapp.com) for a functioning, hosted version.
+Alternatively, go [here](auto-gnome.herokuapp.com) using Chrome for a functioning, hosted version. It may take a moment for the heroku dynamo to spin up, so please be patient.
+
+## Warning
+- This app will only work in Chrome, due to the varied implementation of Web Audio in other browsers.
