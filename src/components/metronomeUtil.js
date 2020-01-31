@@ -24,12 +24,11 @@ let ended = 0;
 let queue = [];
 let setIntervalCancel;
 
-const play = (tempo, goal, incrementBy, incrementEvery, notTesting = false) => {
+const play = (tempo, goal, incrementBy, incrementEvery) => {
   timeContext = new AudioContext();
   sound();
   let rawTempo = tempo;
   let calculatedTempo = 60 / rawTempo;
-  console.log(timeContext);
   let currentTime = timeContext.currentTime + 0.2;
   let incrementCompletion = 0;
   setIntervalCancel = setInterval(() => {
@@ -40,7 +39,6 @@ const play = (tempo, goal, incrementBy, incrementEvery, notTesting = false) => {
     ended = 0;
 
     if (queue.length < 21) {
-      // console.log(queue);
       for (let i = 1; i < 21; i++) {
         // update tempo if incrementing
         if (incrementBy && incrementEvery && rawTempo < goal) {
